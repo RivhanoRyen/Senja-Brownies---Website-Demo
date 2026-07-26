@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Senja Brownies — Fudgy, Dipanggang dengan Cinta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,300..700,0..100&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #241611;
+    --bg-deep: #170F0B;
+    --cream: #FBF1E4;
+    --gold: #C6923D;
+    --gold-soft: #E3B876;
+    --rose: #D9968A;
+    --taupe: #A8927E;
+    --line: rgba(251,241,228,0.14);
+    --shadow: rgba(10,5,3,0.5);
+    --radius: 22px;
+    --ease: cubic-bezier(.22,1,.36,1);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--cream);
+    font-family:'Work Sans',sans-serif;
+    font-weight:400;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces',serif;
+    font-weight:500;
+    line-height:1.05;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  ::selection{background:var(--gold);color:var(--bg-deep);}
+  :focus-visible{outline:2px solid var(--gold-soft);outline-offset:4px;border-radius:4px;}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  .eyebrow{
+    font-family:'Work Sans',sans-serif;
+    font-size:12.5px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--gold-soft);
+    font-weight:600;
+    display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--gold-soft);}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:15px 30px;
+    border-radius:999px;
+    background:var(--gold);
+    color:var(--bg-deep);
+    font-weight:600;
+    font-size:15px;
+    border:1px solid var(--gold);
+    cursor:pointer;
+    transition:transform .35s var(--ease), background .35s var(--ease);
+  }
+  .btn:hover{background:var(--gold-soft);transform:translateY(-2px);}
+  .btn-outline{
+    background:transparent;
+    color:var(--cream);
+    border:1px solid var(--line);
+  }
+  .btn-outline:hover{border-color:var(--gold-soft);color:var(--gold-soft);background:transparent;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:22px 0;
+    transition:background .4s var(--ease), padding .4s var(--ease), border-color .4s var(--ease);
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    background:rgba(23,15,11,0.86);
+    backdrop-filter:blur(14px);
+    padding:14px 0;
+    border-bottom:1px solid var(--line);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;}
+  .logo{font-family:'Fraunces',serif;font-size:22px;display:flex;align-items:baseline;gap:6px;}
+  .logo b{color:var(--gold-soft);font-weight:600;}
+  .logo span{font-family:'Work Sans',sans-serif;font-size:10px;letter-spacing:0.24em;color:var(--taupe);text-transform:uppercase;align-self:center;}
+  .nav-links{display:flex;gap:36px;font-size:14.5px;color:var(--cream);}
+  .nav-links a{position:relative;padding-bottom:4px;opacity:.85;transition:opacity .3s;}
+  .nav-links a:hover{opacity:1;color:var(--gold-soft);}
+  .nav-cta{display:flex;align-items:center;gap:22px;}
+  .menu-toggle{display:none;background:none;border:none;color:var(--cream);font-size:26px;cursor:pointer;}
+
+  @media (max-width:860px){
+    .nav-links{
+      position:fixed;top:0;right:0;height:100vh;width:min(78vw,320px);
+      background:var(--bg-deep);
+      flex-direction:column;justify-content:center;align-items:flex-start;
+      gap:28px;padding:0 40px;
+      transform:translateX(100%);
+      transition:transform .45s var(--ease);
+      border-left:1px solid var(--line);
+    }
+    .nav-links.open{transform:translateX(0);}
+    .menu-toggle{display:block;}
+    .nav-cta .btn{display:none;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;align-items:center;
+    position:relative;
+    padding:150px 0 90px;
+    background:
+      radial-gradient(ellipse 620px 620px at 88% 8%, rgba(198,146,61,0.16), transparent 70%),
+      radial-gradient(ellipse 500px 500px at 5% 95%, rgba(217,150,138,0.10), transparent 70%),
+      var(--bg);
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr 0.95fr;gap:60px;align-items:center;
+  }
+  .hero h1{font-size:clamp(40px,6.2vw,76px);color:var(--cream);}
+  .hero h1 em{font-style:normal;color:var(--gold-soft);}
+  .hero p.lead{
+    font-size:18px;color:var(--taupe);max-width:440px;margin:22px 0 34px;line-height:1.65;
+  }
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:38px;}
+  .hero-stats{display:flex;gap:32px;padding-top:26px;border-top:1px solid var(--line);max-width:480px;}
+  .hero-stats div b{display:block;font-family:'Fraunces',serif;font-size:26px;color:var(--gold-soft);}
+  .hero-stats div span{font-size:12.5px;color:var(--taupe);}
+
+  .hero-art{position:relative;height:460px;}
+  .hero-photo{
+    position:absolute;top:8%;left:8%;width:78%;height:84%;
+    object-fit:cover;border-radius:26px;
+    box-shadow:0 30px 60px var(--shadow);
+    border:1px solid var(--line);
+    transform:rotate(-4deg);
+  }
+  .float-slow{animation:floaty 7s ease-in-out infinite;}
+  .float-slow.delay{animation-delay:1.4s;}
+  @keyframes floaty{0%,100%{transform:translateY(0px) rotate(var(--r,0deg));}50%{transform:translateY(-14px) rotate(var(--r,0deg));}}
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s var(--ease), transform .8s var(--ease);}
+  .reveal.is-visible{opacity:1;transform:translateY(0);}
+
+  section{padding:120px 0;}
+  .section-head{max-width:620px;margin-bottom:60px;}
+  .section-head h2{font-size:clamp(30px,4vw,46px);margin-top:16px;color:var(--cream);}
+  .section-head p{color:var(--taupe);margin-top:16px;font-size:16px;line-height:1.7;}
+
+  /* ---------- SLICE / SIGNATURE INTERACTION ---------- */
+  .slice-section{background:var(--bg-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
+  .slice-layout{display:grid;grid-template-columns:0.9fr 1.1fr;gap:70px;align-items:center;}
+  .slice-copy p{color:var(--taupe);font-size:16px;line-height:1.75;margin:18px 0 28px;max-width:420px;}
+  .layer-legend{display:flex;flex-direction:column;gap:14px;}
+  .layer-legend li{list-style:none;display:flex;gap:14px;align-items:flex-start;font-size:14.5px;color:var(--cream);opacity:.55;transition:opacity .3s;}
+  .layer-legend li.active{opacity:1;}
+  .layer-legend i{width:10px;height:10px;border-radius:50%;margin-top:5px;flex-shrink:0;}
+  .layer-legend b{font-weight:600;display:block;margin-bottom:2px;}
+  .layer-legend span{color:var(--taupe);font-size:13.5px;}
+
+  .slice-stage{position:relative;aspect-ratio:1/0.82;border-radius:var(--radius);overflow:hidden;background:#160E0A;box-shadow:0 30px 60px var(--shadow);}
+  .slice-stage svg{position:absolute;inset:0;width:100%;height:100%;}
+  #layerTop{clip-path:inset(0 0 0 0%);transition:none;}
+  .knife-line{
+    position:absolute;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--gold-soft),var(--gold));
+    box-shadow:0 0 16px rgba(198,146,61,.6);
+    left:0%;pointer-events:none;z-index:5;
+  }
+  .knife-handle{
+    position:absolute;top:50%;width:46px;height:46px;border-radius:50%;
+    background:var(--cream);left:0%;
+    transform:translate(-50%,-50%);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 20px rgba(0,0,0,.4);
+    z-index:6;pointer-events:none;
+  }
+  .knife-handle svg{width:20px;height:20px;}
+  .slice-range{
+    -webkit-appearance:none;appearance:none;
+    position:absolute;inset:0;width:100%;height:100%;
+    background:transparent;cursor:grab;z-index:10;margin:0;
+  }
+  .slice-range:active{cursor:grabbing;}
+  .slice-range::-webkit-slider-thumb{-webkit-appearance:none;width:100%;height:100%;background:transparent;}
+  .slice-range::-moz-range-thumb{width:100%;height:100%;background:transparent;border:none;}
+  .slice-hint{
+    position:absolute;bottom:18px;left:0;right:0;text-align:center;
+    font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--taupe);
+    pointer-events:none;
+  }
+
+  /* ---------- FLAVORS ---------- */
+  .flavors{background:var(--bg);}
+  .tab-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:46px;}
+  .tab-btn{
+    padding:11px 22px;border-radius:999px;border:1px solid var(--line);
+    background:transparent;color:var(--taupe);font-family:'Work Sans',sans-serif;
+    font-size:14.5px;cursor:pointer;transition:all .3s var(--ease);
+  }
+  .tab-btn.active{background:var(--accent,var(--gold));color:var(--bg-deep);border-color:var(--accent,var(--gold));font-weight:600;}
+  .tab-panels{position:relative;min-height:280px;}
+  .tab-panel{
+    display:none;grid-template-columns:0.8fr 1.2fr;gap:50px;align-items:center;
+  }
+  .tab-panel.active{display:grid;}
+  .flavor-visual{
+    aspect-ratio:1/1;border-radius:var(--radius);
+    background:linear-gradient(160deg, color-mix(in srgb, var(--accent,var(--gold)) 22%, var(--bg-deep)), var(--bg-deep));
+    border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    overflow:hidden;
+    transition:background .5s var(--ease);
+  }
+  .flavor-visual img{width:100%;height:100%;object-fit:cover;}
+  .flavor-visual svg{width:56%;}
+  .flavor-copy .eyebrow{color:var(--accent,var(--gold-soft));}
+  .flavor-copy h3{font-size:30px;margin:14px 0 12px;}
+  .flavor-copy p{color:var(--taupe);line-height:1.75;max-width:440px;margin-bottom:20px;}
+  .flavor-price{font-family:'Fraunces',serif;font-size:22px;color:var(--accent,var(--gold-soft));}
+  @media (max-width:760px){.tab-panel{grid-template-columns:1fr;}.flavor-visual{max-width:220px;margin:0 auto;}}
+
+  /* ---------- WHY US ---------- */
+  .why{background:var(--bg-deep);border-top:1px solid var(--line);}
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--line);border-radius:var(--radius);overflow:hidden;}
+  .why-card{
+    background:var(--bg-deep);padding:38px 32px;
+    transition:background .4s var(--ease);
+    cursor:default;
+  }
+  .why-card:hover{background:#1D130E;}
+  .why-card svg{width:34px;height:34px;margin-bottom:22px;color:var(--gold-soft);}
+  .why-card h3{font-size:19px;margin-bottom:10px;color:var(--cream);font-weight:600;font-family:'Work Sans',sans-serif;}
+  .why-card p{font-size:14.5px;color:var(--taupe);line-height:1.7;}
+  @media (max-width:760px){.why-grid{grid-template-columns:1fr;}}
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testi{background:var(--bg);position:relative;}
+  .testi-track{display:flex;transition:transform .6s var(--ease);}
+  .testi-card{
+    flex:0 0 100%;
+    background:linear-gradient(160deg,#2C1B14,#20130D);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:52px;
+    max-width:640px;margin:0 auto;
+  }
+  .stars{display:flex;gap:4px;margin-bottom:22px;}
+  .stars svg{width:16px;height:16px;color:var(--gold-soft);}
+  .testi-card p{font-family:'Fraunces',serif;font-size:23px;line-height:1.5;color:var(--cream);font-weight:400;}
+  .testi-who{display:flex;align-items:center;gap:14px;margin-top:28px;}
+  .testi-avatar{width:44px;height:44px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;color:var(--bg-deep);font-weight:600;font-family:'Fraunces',serif;}
+  .testi-who b{font-size:14.5px;display:block;}
+  .testi-who span{font-size:13px;color:var(--taupe);}
+  .testi-dots{display:flex;justify-content:center;gap:10px;margin-top:34px;}
+  .testi-dots button{width:8px;height:8px;border-radius:50%;border:none;background:var(--line);cursor:pointer;padding:0;transition:background .3s,transform .3s;}
+  .testi-dots button.active{background:var(--gold-soft);transform:scale(1.3);}
+
+  /* ---------- ORDER CTA ---------- */
+  .order{
+    background:linear-gradient(160deg,#2C1B14,#170F0B);
+    border-top:1px solid var(--line);
+    text-align:center;
+  }
+  .order h2{font-size:clamp(30px,5vw,52px);max-width:700px;margin:16px auto 20px;}
+  .order p{color:var(--taupe);max-width:480px;margin:0 auto 36px;line-height:1.7;}
+  .order-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:60px 0 40px;border-top:1px solid var(--line);}
+  .foot-grid{display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;}
+  .foot-grid p{color:var(--taupe);font-size:13.5px;max-width:280px;line-height:1.6;margin-top:10px;}
+  .foot-cols{display:flex;gap:60px;flex-wrap:wrap;}
+  .foot-cols h4{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--taupe);margin-bottom:14px;font-family:'Work Sans',sans-serif;}
+  .foot-cols a{display:block;font-size:14.5px;color:var(--cream);opacity:.8;margin-bottom:10px;}
+  .foot-cols a:hover{opacity:1;color:var(--gold-soft);}
+  .foot-bottom{margin-top:50px;padding-top:24px;border-top:1px solid var(--line);font-size:12.5px;color:var(--taupe);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+
+  /* ---------- FLOATING WA ---------- */
+  .wa-float{
+    position:fixed;bottom:26px;right:26px;z-index:90;
+    width:58px;height:58px;border-radius:50%;
+    background:#25D366;color:#0B140F;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 12px 28px rgba(0,0,0,.4);
+    transition:transform .3s var(--ease);
+  }
+  .wa-float:hover{transform:scale(1.08);}
+  .wa-float svg{width:28px;height:28px;}
+  .wa-ping{
+    position:absolute;inset:0;border-radius:50%;background:#25D366;
+    animation:ping 2.4s ease-out infinite;
+  }
+  @keyframes ping{0%{transform:scale(1);opacity:.55;}100%{transform:scale(1.9);opacity:0;}}
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;text-align:left;}
+    .hero-art{height:320px;order:-1;}
+    .slice-layout{grid-template-columns:1fr;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- PAGE SWITCHING ---------- */
+  .page{display:none;}
+  .page.active{display:block;animation:pageIn .5s var(--ease);}
+  @keyframes pageIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+  .nav-links a.nav-link.current{color:var(--gold-soft);opacity:1;}
+  .nav-links a.nav-link.current::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:var(--gold-soft);}
+
+  /* ---------- ORDER FORM ---------- */
+  .order-layout{max-width:640px;}
+  .order-form{
+    background:linear-gradient(160deg,#2C1B14,#20130D);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:40px;
+    display:flex;flex-direction:column;gap:20px;
+    margin-top:44px;
+  }
+  .field{display:flex;flex-direction:column;gap:8px;}
+  .field-row{display:flex;gap:20px;}
+  .field-row .field{flex:1;}
+  .field label{font-size:13px;letter-spacing:.04em;color:var(--taupe);text-transform:uppercase;}
+  .order-form select,
+  .order-form input,
+  .order-form textarea{
+    background:var(--bg-deep);
+    border:1px solid var(--line);
+    color:var(--cream);
+    border-radius:12px;
+    padding:13px 16px;
+    font-family:'Work Sans',sans-serif;
+    font-size:15px;
+    resize:vertical;
+    transition:border-color .3s var(--ease);
+  }
+  .order-form select:focus,
+  .order-form input:focus,
+  .order-form textarea:focus{border-color:var(--gold-soft);outline:none;}
+  .order-summary{
+    display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+    background:var(--bg-deep);border:1px solid var(--line);border-radius:14px;
+    padding:18px 20px;
+  }
+  .order-summary span{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--taupe);margin-bottom:4px;}
+  .order-summary b{font-family:'Fraunces',serif;font-size:18px;color:var(--cream);}
+  .order-total b{color:var(--gold-soft);}
+  .order-form .btn{width:100%;justify-content:center;}
+  .order-form .btn-outline{width:100%;justify-content:center;}
+  @media (max-width:520px){.field-row{flex-direction:column;gap:20px;}.order-form{padding:28px;}}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header id="siteHeader">
+  <div class="wrap">
+    <nav>
+      <a href="#home" class="logo" data-page="home"><b>Senja</b> Brownies<span>Bandung</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="#home" class="nav-link" data-page="home">Beranda</a>
+        <a href="#menu" class="nav-link" data-page="menu">Menu</a>
+        <a href="#pesan" class="nav-link" data-page="pesan">Pemesanan</a>
+      </div>
+      <div class="nav-cta">
+        <a href="#pesan" class="btn nav-link" data-page="pesan">Pesan Sekarang</a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">☰</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= PAGE: BERANDA ================= -->
+<main class="page active" id="page-home" data-page="home">
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Dipanggang segar setiap pagi</p>
+      <h1>Setiap gigitan,<br>sepotong <em>senja</em>.</h1>
+      <p class="lead">Brownies fudgy dengan cokelat couverture asli, dipanggang dalam batch kecil supaya teksturnya tetap lembap dan padat — bukan brownies pabrik yang kering di hari kedua.</p>
+      <div class="hero-actions">
+        <a href="https://wa.me/6289512633123" class="btn">Pesan via WhatsApp</a>
+        <a href="#slice" class="btn btn-outline">Lihat Isinya ↓</a>
+      </div>
+      <div class="hero-stats">
+        <div><b>4.9/5</b><span>dari 800+ pesanan</span></div>
+        <div><b>Same-day</b><span>kirim area Bandung</span></div>
+        <div><b>0 gr</b><span>pengawet tambahan</span></div>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <img src="images/hero.jpg" alt="Sepotong Senja Brownies fudgy di atas piring" class="hero-photo float-slow">
+      <svg viewBox="0 0 100 100" style="position:absolute;bottom:4%;right:2%;width:26%;" class="float-slow delay" style="--r:8deg" aria-hidden="true">
+        <ellipse cx="50" cy="55" rx="34" ry="26" fill="#D9968A" opacity="0.9"/>
+        <path d="M50 20 C40 30 40 45 50 55 C60 45 60 30 50 20Z" fill="#8A5A45"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SIGNATURE: SLICE INTERACTION ================= -->
+<section class="slice-section" id="slice">
+  <div class="wrap slice-layout">
+    <div class="slice-copy reveal">
+      <p class="eyebrow">Geser pisaunya</p>
+      <h2 style="font-size:clamp(28px,3.6vw,40px);">Lihat apa yang<br>bikin fudgy-nya jujur.</h2>
+      <p>Bukan sekadar cokelat di permukaan. Tarik pisau ke kanan untuk membuka lapisan brownies kami satu per satu.</p>
+      <ul class="layer-legend" id="layerLegend">
+        <li data-layer="0" class="active"><i style="background:#4A2E1E"></i><div><b>Kerak Atas</b><span>Renyah tipis, hasil dari pemanggangan suhu tinggi di awal.</span></div></li>
+        <li data-layer="1"><i style="background:#8A5A32"></i><div><b>Inti Fudgy</b><span>Cokelat couverture 62% dilelehkan, bukan bubuk kakao instan.</span></div></li>
+        <li data-layer="2"><i style="background:#2A1810"></i><div><b>Choco Chunks</b><span>Potongan cokelat batangan yang meleleh sebagian saat dipanggang.</span></div></li>
+      </ul>
+    </div>
+
+    <div class="reveal">
+      <div class="slice-stage" id="sliceStage">
+        <svg id="layerBottom" viewBox="0 0 400 320" preserveAspectRatio="none">
+          <rect width="400" height="320" fill="#1B110B"/>
+          <rect x="0" y="0" width="400" height="60" fill="#4A2E1E"/>
+          <rect x="0" y="60" width="400" height="200" fill="#8A5A32"/>
+          <rect x="0" y="260" width="400" height="60" fill="#5C3A22"/>
+          <circle cx="60" cy="130" r="14" fill="#2A1810"/>
+          <circle cx="150" cy="180" r="16" fill="#2A1810"/>
+          <circle cx="240" cy="120" r="12" fill="#2A1810"/>
+          <circle cx="320" cy="190" r="15" fill="#2A1810"/>
+          <circle cx="100" cy="220" r="10" fill="#2A1810"/>
+          <circle cx="280" cy="230" r="11" fill="#2A1810"/>
+        </svg>
+        <svg id="layerTop" viewBox="0 0 400 320" preserveAspectRatio="none">
+          <rect width="400" height="320" fill="#2A1810"/>
+          <path d="M0 40 Q60 15 120 40 T240 40 T400 40 V0 H0 Z" fill="#3A2419"/>
+          <path d="M20 90 Q100 60 180 90 T340 90" stroke="#E3B876" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.5"/>
+          <path d="M10 160 Q100 130 190 160 T380 160" stroke="#E3B876" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.35"/>
+          <path d="M30 230 Q120 205 210 230 T390 230" stroke="#E3B876" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.25"/>
+        </svg>
+        <div class="knife-line" id="knifeLine"></div>
+        <div class="knife-handle" id="knifeHandle">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 20 L18 6 M18 6 L20 4 M14 10 L20 4" stroke="#241611" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <input type="range" min="0" max="100" value="0" class="slice-range" id="sliceRange" aria-label="Geser untuk membuka lapisan brownies">
+        <p class="slice-hint" id="sliceHint">← geser pisau untuk membelah →</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY US teaser link to full story stays here, testimonials & CTA below, then close page-home ================= -->
+
+</main>
+
+<!-- ================= PAGE: MENU ================= -->
+<main class="page" id="page-menu" data-page="menu">
+
+<!-- ================= FLAVORS ================= -->
+<section class="flavors" id="menu">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Menu</p>
+      <h2>Empat varian, satu adonan dasar yang sama teguhnya.</h2>
+      <p>Kami tidak membuat rasa baru tiap bulan. Empat ini yang paling kami percaya, dan kami terus memperbaikinya diam-diam.</p>
+    </div>
+
+    <div class="tab-bar" id="tabBar">
+      <button class="tab-btn active" data-tab="0" style="--accent:#C6923D">Fudgy Original</button>
+      <button class="tab-btn" data-tab="1" style="--accent:#D9968A">Salted Caramel</button>
+      <button class="tab-btn" data-tab="2" style="--accent:#8FAE8B">Pandan Keju</button>
+      <button class="tab-btn" data-tab="3" style="--accent:#B85C5C">Red Velvet</button>
+    </div>
+
+    <div class="tab-panels" id="tabPanels">
+      <div class="tab-panel active" data-panel="0" style="--accent:#C6923D">
+        <div class="flavor-visual">
+          <img src="https://drive.google.com/file/d/1pBvcDgpv1xGdoyUXDc6MbuNlXb8IjD-q/view?usp=drive_link" alt="Fudgy Original Senja Brownies">
+        </div>
+        <div class="flavor-copy">
+          <p class="eyebrow">Sejak hari pertama</p>
+          <h3>Fudgy Original</h3>
+          <p>Resep pertama kami, tidak pernah diubah. Cokelat couverture 62%, mentega asli, dan waktu panggang yang kami hitung sampai detik supaya bagian tengahnya tetap basah.</p>
+          <p class="flavor-price">Rp 38.000 / slice</p>
+          <button type="button" class="btn btn-outline order-this" data-flavor="Fudgy Original" style="margin-top:20px;">Pesan Varian Ini</button>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="1" style="--accent:#D9968A">
+        <div class="flavor-visual">
+          <img src="images/salted-caramel.jpg" alt="Salted Caramel Senja Brownies">
+        </div>
+        <div class="flavor-copy">
+          <p class="eyebrow">Favorit pelanggan</p>
+          <h3>Salted Caramel</h3>
+          <p>Saus karamel rumahan dimasak sampai warnanya gelap, diberi sejumput garam laut di atasnya. Manis dan asin bertengkar dengan seimbang.</p>
+          <p class="flavor-price">Rp 42.000 / slice</p>
+          <button type="button" class="btn btn-outline order-this" data-flavor="Salted Caramel" style="margin-top:20px;">Pesan Varian Ini</button>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="2" style="--accent:#8FAE8B">
+        <div class="flavor-visual">
+          <img src="images/pandan-keju.jpg" alt="Pandan Keju Senja Brownies">
+        </div>
+        <div class="flavor-copy">
+          <p class="eyebrow">Rasa lokal</p>
+          <h3>Pandan Keju</h3>
+          <p>Aroma pandan asli dari daunnya sendiri, bukan pasta instan, dipadukan dengan taburan keju cheddar tua yang gurih di atas permukaan.</p>
+          <p class="flavor-price">Rp 40.000 / slice</p>
+          <button type="button" class="btn btn-outline order-this" data-flavor="Pandan Keju" style="margin-top:20px;">Pesan Varian Ini</button>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="3" style="--accent:#B85C5C">
+        <div class="flavor-visual">
+          <img src="images/red-velvet.jpg" alt="Red Velvet Senja Brownies">
+        </div>
+        <div class="flavor-copy">
+          <p class="eyebrow">Edisi lembut</p>
+          <h3>Red Velvet</h3>
+          <p>Tekstur sedikit lebih ringan dari varian lain, diberi swirl cream cheese asam yang menyeimbangkan rasa cokelatnya yang dalam.</p>
+          <p class="flavor-price">Rp 42.000 / slice</p>
+          <button type="button" class="btn btn-outline order-this" data-flavor="Red Velvet" style="margin-top:20px;">Pesan Varian Ini</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= PAGE: BERANDA (lanjutan) ================= -->
+<main class="page active" id="page-home-2" data-page="home">
+
+<!-- ================= WHY US ================= -->
+<section class="why" id="cerita">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Cerita Kami</p>
+      <h2>Kami memilih lambat, di dapur yang sama sejak awal.</h2>
+    </div>
+    <div class="why-grid reveal">
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 L4 9 V21 H20 V9 Z" stroke="currentColor" stroke-width="1.6"/></svg>
+        <h3>Dapur rumahan, bukan pabrik</h3>
+        <p>Setiap loyang dipanggang dan dipotong tangan oleh tim kecil kami sendiri, bukan lini produksi otomatis.</p>
+      </div>
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2 L14 9 L21 9 L15.5 13.5 L17.5 21 L12 16.5 L6.5 21 L8.5 13.5 L3 9 L10 9 Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        <h3>Cokelat couverture asli</h3>
+        <p>Kami memakai cokelat batangan yang dilelehkan langsung, bukan bubuk kakao murah yang membuat rasa jadi hambar.</p>
+      </div>
+      <div class="why-card">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 12 H21 M12 3 V21" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/></svg>
+        <h3>Dikirim di hari yang sama</h3>
+        <p>Pesan sebelum jam 2 siang, brownies sampai ke rumah Anda sore itu juga untuk area dalam kota Bandung.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="testi" id="testimoni">
+  <div class="wrap">
+    <div class="section-head reveal" style="margin:0 auto 50px;text-align:center;">
+      <p class="eyebrow" style="justify-content:center;">Testimoni</p>
+      <h2>Kata mereka yang sudah mencicipi.</h2>
+    </div>
+
+    <div style="overflow:hidden;">
+      <div class="testi-track" id="testiTrack">
+        <div class="testi-card">
+          <div class="stars">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.6 6 .7-4.4 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.4 7.3l6-.7z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.6 6 .7-4.4 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.4 7.3l6-.7z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.6 6 .7-4.4 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.4 7.3l6-.7z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.6 6 .7-4.4 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.4 7.3l6-.7z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.6 6 .7-4.4 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.4 7.3l6-.7z"/></svg>
+          </div>
+          <p>"Bagian tengahnya masih basah walau sudah dua hari di kulkas. Brownies lain biasanya kering di hari kedua."</p>
+          <div class="testi-who">
+            <div class="testi-avatar">R</div>
+            <div><b>Rani A.</b><span>Pelanggan sejak 2023</span></div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="stars">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.6 6 .7-4.4 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.4 7.3l6-.7z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.6 6 .7-4.4 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.4 7.3l6-.7z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.6 6 .7-4.4 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.4 7.3l6-.7z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.6 6 .7-4.4 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.4 7.3l6-.7z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.6 6 .7-4.4 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.4 7.3l6-.7z"/></svg>
+          </div>
+          <p>"Salted caramel-nya bikin ketagihan, garamnya pas, nggak bikin enek walau manis."</p>
+          <div class="testi-who">
+            <div class="testi-avatar">D</div>
+            <div><b>Dimas P.</b><span>Pesan tiap bulan</span></div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="stars">
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.6 6 .7-4.4 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.4 7.3l6-.7z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.6 6 .7-4.4 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.4 7.3l6-.7z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.6 6 .7-4.4 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.4 7.3l6-.7z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.6 6 .7-4.4 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.4 7.3l6-.7z"/></svg>
+            <svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 1l2.6 5.6 6 .7-4.4 4.2 1.2 6-5.4-3-5.4 3 1.2-6L1.4 7.3l6-.7z"/></svg>
+          </div>
+          <p>"Pandan kejunya unik, jarang ketemu brownies rasa itu dan keju cheddarnya asin gurih banget."</p>
+          <div class="testi-who">
+            <div class="testi-avatar">S</div>
+            <div><b>Sari W.</b><span>Pesanan pertama</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-dots" id="testiDots">
+      <button class="active" data-i="0" aria-label="Testimoni 1"></button>
+      <button data-i="1" aria-label="Testimoni 2"></button>
+      <button data-i="2" aria-label="Testimoni 3"></button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= PAGE: PEMESANAN ================= -->
+<main class="page" id="page-pesan" data-page="pesan">
+
+<!-- ================= ORDER CTA / FORM ================= -->
+<section class="order" id="pesan">
+  <div class="wrap">
+    <p class="eyebrow" style="justify-content:center;">Cara Pesan</p>
+    <h2>Isi rincian pesanan, lalu kirim langsung ke WhatsApp kami.</h2>
+    <p>Kami balas dalam 15 menit di jam operasional (08.00–20.00 WIB). Pembayaran transfer atau QRIS, pengiriman same-day untuk area Bandung.</p>
+  </div>
+
+  <div class="wrap order-layout">
+    <form class="order-form reveal" id="orderForm">
+      <div class="field">
+        <label for="orderFlavor">Varian Rasa</label>
+        <select id="orderFlavor">
+          <option value="Fudgy Original" data-price="38000">Fudgy Original — Rp 38.000/slice</option>
+          <option value="Salted Caramel" data-price="42000">Salted Caramel — Rp 42.000/slice</option>
+          <option value="Pandan Keju" data-price="40000">Pandan Keju — Rp 40.000/slice</option>
+          <option value="Red Velvet" data-price="42000">Red Velvet — Rp 42.000/slice</option>
+        </select>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="orderQty">Jumlah (slice)</label>
+          <input type="number" id="orderQty" min="1" value="1">
+        </div>
+        <div class="field">
+          <label for="orderName">Nama Pemesan</label>
+          <input type="text" id="orderName" placeholder="Nama Anda">
+        </div>
+      </div>
+      <div class="field">
+        <label for="orderAddress">Alamat Pengiriman</label>
+        <textarea id="orderAddress" rows="2" placeholder="Jalan, nomor rumah, kecamatan, kota"></textarea>
+      </div>
+      <div class="field">
+        <label for="orderNote">Catatan (opsional)</label>
+        <textarea id="orderNote" rows="2" placeholder="Contoh: tanpa taburan keju, kirim sore hari, dll."></textarea>
+      </div>
+
+      <div class="order-summary">
+        <div><span>Ringkasan</span><b id="summaryText">1 slice Fudgy Original</b></div>
+        <div class="order-total"><span>Estimasi Total</span><b id="summaryTotal">Rp 38.000</b></div>
+      </div>
+
+      <button type="button" class="btn" id="orderSubmit">Kirim Pesanan via WhatsApp</button>
+      <a href="#menu" class="btn btn-outline" data-page="menu">Lihat Menu Lagi</a>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#home" class="logo" data-page="home"><b>Senja</b> Brownies</a>
+        <p>Brownies fudgy rumahan dari Bandung. Dipanggang dalam batch kecil setiap pagi, dikirim segar di hari yang sama.</p>
+      </div>
+      <div class="foot-cols">
+        <div>
+          <h4>Jelajahi</h4>
+          <a href="#home" class="nav-link" data-page="home">Beranda</a>
+          <a href="#menu" class="nav-link" data-page="menu">Menu</a>
+          <a href="#pesan" class="nav-link" data-page="pesan">Pemesanan</a>
+        </div>
+        <div>
+          <h4>Kontak</h4>
+          <a href="https://wa.me/6281234567890">WhatsApp</a>
+          <a href="mailto:halo@senjabrownies.id">halo@senjabrownies.id</a>
+          <a href="#">Instagram @senjabrownies</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Senja Brownies. Dibuat dengan cinta di Bandung.</span>
+      <span>Jam operasional: 08.00–20.00 WIB</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= FLOATING WHATSAPP ================= -->
+<a href="https://wa.me/6281234567890" class="wa-float" aria-label="Pesan via WhatsApp">
+  <span class="wa-ping"></span>
+  <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 1.9 6.5L4 29l7.7-2C13.5 27.7 14.7 28 16 28c6.6 0 12-5.4 12-12S22.6 3 16 3zm0 22c-1.2 0-2.4-.3-3.4-.8l-.4-.2-4.5 1.2 1.2-4.4-.2-.4C7.6 19.2 7 17.2 7 15c0-5 4-9 9-9s9 4 9 9-4 9-9 9zm5-6.6c-.3-.1-1.6-.8-1.8-.9-.2-.1-.4-.1-.6.1-.2.2-.6.9-.8 1.1-.1.2-.3.2-.5.1-1.3-.6-2.1-1.1-2.9-2.5-.2-.4 0-.5.2-.7.2-.2.4-.5.6-.7.1-.2.1-.4 0-.5-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.3 0 1.4 1 2.7 1.1 2.9.1.2 1.9 3 4.7 4 2.7 1 2.7.7 3.2.6.5-.1 1.6-.6 1.8-1.3.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.6-.3z"/></svg>
+</a>
+
+<script>
+  // ---------- Header scroll state ----------
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // ---------- Mobile menu ----------
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // ---------- Scroll reveal ----------
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // ---------- Signature slice interaction ----------
+  const sliceRange = document.getElementById('sliceRange');
+  const layerTop = document.getElementById('layerTop');
+  const knifeLine = document.getElementById('knifeLine');
+  const knifeHandle = document.getElementById('knifeHandle');
+  const sliceHint = document.getElementById('sliceHint');
+  const legendItems = document.querySelectorAll('#layerLegend li');
+
+  function updateSlice(val){
+    layerTop.style.clipPath = `inset(0 0 0 ${val}%)`;
+    knifeLine.style.left = val + '%';
+    knifeHandle.style.left = val + '%';
+    sliceHint.style.opacity = val > 5 ? 0 : 1;
+
+    let activeIndex = 0;
+    if (val > 66) activeIndex = 2;
+    else if (val > 30) activeIndex = 1;
+    legendItems.forEach((li, i) => li.classList.toggle('active', i === activeIndex));
+  }
+  sliceRange.addEventListener('input', (e) => updateSlice(e.target.value));
+  updateSlice(0);
+
+  // ---------- Flavor tabs ----------
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = btn.dataset.tab;
+      tabBtns.forEach(b => b.classList.remove('active'));
+      tabPanels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelector(`.tab-panel[data-panel="${idx}"]`).classList.add('active');
+    });
+  });
+
+  // ---------- Testimonial carousel ----------
+  const track = document.getElementById('testiTrack');
+  const dots = document.querySelectorAll('#testiDots button');
+  let current = 0;
+  const total = dots.length;
+
+  function goTo(i){
+    current = i;
+    track.style.transform = `translateX(-${i * 100}%)`;
+    dots.forEach((d, idx) => d.classList.toggle('active', idx === i));
+  }
+  dots.forEach(d => d.addEventListener('click', () => goTo(parseInt(d.dataset.i))));
+
+  let autoplay = setInterval(() => goTo((current + 1) % total), 5500);
+  track.parentElement.addEventListener('mouseenter', () => clearInterval(autoplay));
+  track.parentElement.addEventListener('mouseleave', () => {
+    autoplay = setInterval(() => goTo((current + 1) % total), 5500);
+  });
+
+  // ---------- Page routing ----------
+  const validPages = ['home', 'menu', 'pesan'];
+
+  function showPage(pageId, pushHistory = true){
+    if (!validPages.includes(pageId)) pageId = 'home';
+    document.querySelectorAll('.page').forEach(p => p.classList.toggle('active', p.dataset.page === pageId));
+    document.querySelectorAll('a[data-page], button[data-page]').forEach(a => a.classList.toggle('current', a.dataset.page === pageId));
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    if (pushHistory) history.pushState({ page: pageId }, '', '#' + pageId);
+    navLinks.classList.remove('open');
+    // reveal content immediately for the page just shown
+    document.querySelectorAll(`.page[data-page="${pageId}"] .reveal`).forEach(el => el.classList.add('is-visible'));
+  }
+
+  document.querySelectorAll('a[data-page], button[data-page]').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage(el.dataset.page);
+    });
+  });
+
+  window.addEventListener('popstate', (e) => {
+    showPage(e.state && e.state.page ? e.state.page : 'home', false);
+  });
+
+  const startPage = validPages.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'home';
+  showPage(startPage, false);
+  history.replaceState({ page: startPage }, '', '#' + startPage);
+
+  // ---------- Order form ----------
+  const flavorPrices = {
+    'Fudgy Original': 38000,
+    'Salted Caramel': 42000,
+    'Pandan Keju': 40000,
+    'Red Velvet': 42000
+  };
+  const orderFlavorSel = document.getElementById('orderFlavor');
+  const orderQty = document.getElementById('orderQty');
+  const orderName = document.getElementById('orderName');
+  const orderAddress = document.getElementById('orderAddress');
+  const orderNote = document.getElementById('orderNote');
+  const summaryText = document.getElementById('summaryText');
+  const summaryTotal = document.getElementById('summaryTotal');
+  const orderSubmit = document.getElementById('orderSubmit');
+
+  function formatRupiah(n){
+    return 'Rp ' + n.toLocaleString('id-ID');
+  }
+
+  function updateSummary(){
+    const flavor = orderFlavorSel.value;
+    const qty = Math.max(1, parseInt(orderQty.value, 10) || 1);
+    const total = flavorPrices[flavor] * qty;
+    summaryText.textContent = `${qty} slice ${flavor}`;
+    summaryTotal.textContent = formatRupiah(total);
+  }
+  orderFlavorSel.addEventListener('change', updateSummary);
+  orderQty.addEventListener('input', updateSummary);
+  updateSummary();
+
+  document.querySelectorAll('.order-this').forEach(btn => {
+    btn.addEventListener('click', () => {
+      orderFlavorSel.value = btn.dataset.flavor;
+      updateSummary();
+      showPage('pesan');
+    });
+  });
+
+  orderSubmit.addEventListener('click', () => {
+    const flavor = orderFlavorSel.value;
+    const qty = Math.max(1, parseInt(orderQty.value, 10) || 1);
+    const name = orderName.value.trim() || 'Tanpa nama';
+    const address = orderAddress.value.trim();
+    const note = orderNote.value.trim();
+    const total = flavorPrices[flavor] * qty;
+
+    let msg = `Halo Senja Brownies, saya mau pesan:\n`;
+    msg += `Nama: ${name}\n`;
+    msg += `Varian: ${flavor}\n`;
+    msg += `Jumlah: ${qty} slice\n`;
+    msg += `Estimasi Total: ${formatRupiah(total)}\n`;
+    if (address) msg += `Alamat: ${address}\n`;
+    if (note) msg += `Catatan: ${note}\n`;
+
+    const url = 'https://wa.me/6281234567890?text=' + encodeURIComponent(msg);
+    window.open(url, '_blank');
+  });
+</script>
+</body>
+</html>
