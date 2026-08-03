@@ -158,48 +158,6 @@
   .section-head h2{font-size:clamp(30px,4vw,46px);margin-top:16px;color:var(--cream);}
   .section-head p{color:var(--taupe);margin-top:16px;font-size:16px;line-height:1.7;}
 
-  /* ---------- SLICE / SIGNATURE INTERACTION ---------- */
-  .slice-section{background:var(--bg-deep);border-top:1px solid var(--line);border-bottom:1px solid var(--line);}
-  .slice-layout{display:grid;grid-template-columns:0.9fr 1.1fr;gap:70px;align-items:center;}
-  .slice-copy p{color:var(--taupe);font-size:16px;line-height:1.75;margin:18px 0 28px;max-width:420px;}
-  .layer-legend{display:flex;flex-direction:column;gap:14px;}
-  .layer-legend li{list-style:none;display:flex;gap:14px;align-items:flex-start;font-size:14.5px;color:var(--cream);opacity:.55;transition:opacity .3s;}
-  .layer-legend li.active{opacity:1;}
-  .layer-legend i{width:10px;height:10px;border-radius:50%;margin-top:5px;flex-shrink:0;}
-  .layer-legend b{font-weight:600;display:block;margin-bottom:2px;}
-  .layer-legend span{color:var(--taupe);font-size:13.5px;}
-
-  .slice-stage{position:relative;aspect-ratio:1/0.82;border-radius:var(--radius);overflow:hidden;background:#160E0A;box-shadow:0 30px 60px var(--shadow);}
-  .slice-stage svg{position:absolute;inset:0;width:100%;height:100%;}
-  #layerTop{clip-path:inset(0 0 0 0%);transition:none;}
-  .knife-line{
-    position:absolute;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--gold-soft),var(--gold));
-    box-shadow:0 0 16px rgba(198,146,61,.6);
-    left:0%;pointer-events:none;z-index:5;
-  }
-  .knife-handle{
-    position:absolute;top:50%;width:46px;height:46px;border-radius:50%;
-    background:var(--cream);left:0%;
-    transform:translate(-50%,-50%);
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 8px 20px rgba(0,0,0,.4);
-    z-index:6;pointer-events:none;
-  }
-  .knife-handle svg{width:20px;height:20px;}
-  .slice-range{
-    -webkit-appearance:none;appearance:none;
-    position:absolute;inset:0;width:100%;height:100%;
-    background:transparent;cursor:grab;z-index:10;margin:0;
-  }
-  .slice-range:active{cursor:grabbing;}
-  .slice-range::-webkit-slider-thumb{-webkit-appearance:none;width:100%;height:100%;background:transparent;}
-  .slice-range::-moz-range-thumb{width:100%;height:100%;background:transparent;border:none;}
-  .slice-hint{
-    position:absolute;bottom:18px;left:0;right:0;text-align:center;
-    font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--taupe);
-    pointer-events:none;
-  }
-
   /* ---------- FLAVORS ---------- */
   .flavors{background:var(--bg);}
   .tab-bar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:46px;}
@@ -306,7 +264,6 @@
   @media (max-width:900px){
     .hero-grid{grid-template-columns:1fr;text-align:left;}
     .hero-art{height:320px;order:-1;}
-    .slice-layout{grid-template-columns:1fr;}
   }
 
   @media (prefers-reduced-motion: reduce){
@@ -396,7 +353,7 @@
       <p class="lead">Brownies fudgy dengan cokelat couverture asli, dipanggang dalam batch kecil supaya teksturnya tetap lembap dan padat — bukan brownies pabrik yang kering di hari kedua.</p>
       <div class="hero-actions">
         <a href="https://wa.me/6289512633123" class="btn">Pesan via WhatsApp</a>
-        <a href="#slice" class="btn btn-outline">Lihat Isinya ↓</a>
+        <a href="#menu" class="btn btn-outline">Lihat Isinya ↓</a>
       </div>
       <div class="hero-stats">
         <div><b>4.9/5</b><span>dari 800+ pesanan</span></div>
@@ -411,52 +368,6 @@
         <ellipse cx="50" cy="55" rx="34" ry="26" fill="#D9968A" opacity="0.9"/>
         <path d="M50 20 C40 30 40 45 50 55 C60 45 60 30 50 20Z" fill="#8A5A45"/>
       </svg>
-    </div>
-  </div>
-</section>
-
-<!-- ================= SIGNATURE: SLICE INTERACTION ================= -->
-<section class="slice-section" id="slice">
-  <div class="wrap slice-layout">
-    <div class="slice-copy reveal">
-      <p class="eyebrow">Geser pisaunya</p>
-      <h2 style="font-size:clamp(28px,3.6vw,40px);">Lihat apa yang<br>bikin fudgy-nya jujur.</h2>
-      <p>Bukan sekadar cokelat di permukaan. Tarik pisau ke kanan untuk membuka lapisan brownies kami satu per satu.</p>
-      <ul class="layer-legend" id="layerLegend">
-        <li data-layer="0" class="active"><i style="background:#4A2E1E"></i><div><b>Kerak Atas</b><span>Renyah tipis, hasil dari pemanggangan suhu tinggi di awal.</span></div></li>
-        <li data-layer="1"><i style="background:#8A5A32"></i><div><b>Inti Fudgy</b><span>Cokelat couverture 62% dilelehkan, bukan bubuk kakao instan.</span></div></li>
-        <li data-layer="2"><i style="background:#2A1810"></i><div><b>Choco Chunks</b><span>Potongan cokelat batangan yang meleleh sebagian saat dipanggang.</span></div></li>
-      </ul>
-    </div>
-
-    <div class="reveal">
-      <div class="slice-stage" id="sliceStage">
-        <svg id="layerBottom" viewBox="0 0 400 320" preserveAspectRatio="none">
-          <rect width="400" height="320" fill="#1B110B"/>
-          <rect x="0" y="0" width="400" height="60" fill="#4A2E1E"/>
-          <rect x="0" y="60" width="400" height="200" fill="#8A5A32"/>
-          <rect x="0" y="260" width="400" height="60" fill="#5C3A22"/>
-          <circle cx="60" cy="130" r="14" fill="#2A1810"/>
-          <circle cx="150" cy="180" r="16" fill="#2A1810"/>
-          <circle cx="240" cy="120" r="12" fill="#2A1810"/>
-          <circle cx="320" cy="190" r="15" fill="#2A1810"/>
-          <circle cx="100" cy="220" r="10" fill="#2A1810"/>
-          <circle cx="280" cy="230" r="11" fill="#2A1810"/>
-        </svg>
-        <svg id="layerTop" viewBox="0 0 400 320" preserveAspectRatio="none">
-          <rect width="400" height="320" fill="#2A1810"/>
-          <path d="M0 40 Q60 15 120 40 T240 40 T400 40 V0 H0 Z" fill="#3A2419"/>
-          <path d="M20 90 Q100 60 180 90 T340 90" stroke="#E3B876" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.5"/>
-          <path d="M10 160 Q100 130 190 160 T380 160" stroke="#E3B876" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.35"/>
-          <path d="M30 230 Q120 205 210 230 T390 230" stroke="#E3B876" stroke-width="8" fill="none" stroke-linecap="round" opacity="0.25"/>
-        </svg>
-        <div class="knife-line" id="knifeLine"></div>
-        <div class="knife-handle" id="knifeHandle">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M4 20 L18 6 M18 6 L20 4 M14 10 L20 4" stroke="#241611" stroke-width="2" stroke-linecap="round"/></svg>
-        </div>
-        <input type="range" min="0" max="100" value="0" class="slice-range" id="sliceRange" aria-label="Geser untuk membuka lapisan brownies">
-        <p class="slice-hint" id="sliceHint">← geser pisau untuk membelah →</p>
-      </div>
     </div>
   </div>
 </section>
@@ -747,28 +658,6 @@
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
   }, { threshold: 0.15 });
   revealEls.forEach(el => io.observe(el));
-
-  // ---------- Signature slice interaction ----------
-  const sliceRange = document.getElementById('sliceRange');
-  const layerTop = document.getElementById('layerTop');
-  const knifeLine = document.getElementById('knifeLine');
-  const knifeHandle = document.getElementById('knifeHandle');
-  const sliceHint = document.getElementById('sliceHint');
-  const legendItems = document.querySelectorAll('#layerLegend li');
-
-  function updateSlice(val){
-    layerTop.style.clipPath = `inset(0 0 0 ${val}%)`;
-    knifeLine.style.left = val + '%';
-    knifeHandle.style.left = val + '%';
-    sliceHint.style.opacity = val > 5 ? 0 : 1;
-
-    let activeIndex = 0;
-    if (val > 66) activeIndex = 2;
-    else if (val > 30) activeIndex = 1;
-    legendItems.forEach((li, i) => li.classList.toggle('active', i === activeIndex));
-  }
-  sliceRange.addEventListener('input', (e) => updateSlice(e.target.value));
-  updateSlice(0);
 
   // ---------- Flavor tabs ----------
   const tabBtns = document.querySelectorAll('.tab-btn');
